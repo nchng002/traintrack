@@ -1,0 +1,13 @@
+.content {
+    position: relative;
+    max-width: 700px;
+}
+
+.text-style--1 {
+    font-family: 'Bangers', cursive;
+}
+
+.text-style--2 {
+    font-family: 'Open Sans',
+        sans-serif;
+}
