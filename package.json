@@ -1,18 +1,17 @@
 {
-  "name": "date-exy",
+  "name": "traintrack",
   "version": "1.0.0",
-  "description": "",
+  "description": "Visualising crowdedness of train stations in Singapore",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "Nataniel Chng",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "node-fetch": "^3.2.6"
-  },
-  "type": "module"
+    "node-fetch": "^2.6.0"
+  }
 }

@@ -19,21 +19,17 @@
 
     <link href="./style.css" rel="stylesheet">
 
-    <title>Document</title>
+    <title>🚆</title>
 </head>
 
 <body class="container bg-dark text-white">
-    <header class="text-center pt-3 pb-3 mb-3 text-style--1">
-        <h1>Train Track</h1>
+    <header class="text-center pt-3 pb-3 mb-3">
+        <h1 class="text-style--1">Train 🚆 Track</h1>
+        <p>Visualising train station crowdedness in Singapore <br> <a target="_blank" rel="noopener noreferrer"
+                href="https://github.com/nchng002/traintrack">Click here</a> to learn more!</p>
     </header>
 
     <div class="content container text-style--2">
-        <div class="text-center mb-3">
-            <button type="button" class="btn btn-light" onclick="clickedRefresh()">
-                Click to refresh. Last refreshed at <span id="refreshtime"></span>
-            </button>
-        </div>
-
         <div class="text-center border mb-3">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="canvas"
                 viewbox="0 0 500 300">
@@ -43,7 +39,7 @@
         </div>
 
         <div>
-            <p id="low">All stations have low crowds</p>
+            <p id="low"></p>
             <p id="crowded"></p>
             <div id="crowdedstations"></div>
             <p id="mild"></p>

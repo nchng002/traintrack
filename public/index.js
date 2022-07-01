@@ -2,10 +2,16 @@ let canvas = d3.select('#canvasitems')
 let tooltip = d3.select('#tooltip')
 
 let drawMap = async () => {
-    const crowdResponse = await fetch('sampledata.json')
-    //const crowdResponse = await fetch('/database')
+    //const crowdResponse = await fetch('sampledata.json')
+    const crowdResponse = await fetch('/database')
     const crowdData = await crowdResponse.json()
     console.log(crowdData)
+
+    let hasError
+    const errorResponse = await fetch('/haserror')
+    const errorData = await errorResponse.json()
+    hasError = errorData.haserror
+    console.log(hasError)
 
     const trainlineResponse = await fetch('trainlines.json')
     const trainlineData = await trainlineResponse.json()
@@ -129,7 +135,7 @@ let drawMap = async () => {
             let selectedStation = document.getElementById(station.Station)
             if (station.CrowdLevel == 'h') {
 
-                crowdedP.textContent = 'There are very crowded stations'
+                crowdedP.textContent = '❕ There are very crowded stations'
 
                 lowP.textContent = ""
 
@@ -145,7 +151,7 @@ let drawMap = async () => {
 
             } else if (station.CrowdLevel == 'm') {
 
-                mildP.textContent = 'There are mildly crowded stations'
+                mildP.textContent = '⚠️ There are mildly crowded stations'
 
                 lowP.textContent = ""
 
@@ -165,32 +171,15 @@ let drawMap = async () => {
 
         })
     })
+
+    if (problemStations.length == 0 && !hasError) {
+        lowP.textContent = "✔️ All stations have low crowds"
+        document.getElementById("errormessage").textContent = ""
+    } else if (hasError) {
+        document.getElementById("errormessage").textContent = "😔 There seems to be an error retrieving API data."
+    }
 }
 
-let refreshTime = () => {
-    let refreshTime = document.getElementById('refreshtime')
-    let date = new Date()
-    let hours = date.getHours()
-    let minutes = date.getMinutes()
-
-    // Check whether AM or PM
-    let newformat = hours >= 12 ? 'PM' : 'AM'
-
-    // Find current hour in AM-PM Format
-    hours = hours % 12
-
-    // To display "0" as "12"
-    hours = hours ? hours : 12
-    minutes = minutes < 10 ? '0' + minutes : minutes
-
-    refreshTime.textContent = `${hours}:${minutes} ${newformat}`
-}
-
-let clickedRefresh = () => {
-    location.reload()
-}
-
-refreshTime()
 drawMap()
 
 
